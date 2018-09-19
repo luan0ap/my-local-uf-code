@@ -3,16 +3,18 @@ import UfCode from './components/UfCode'
 import getUfCode from './api/getUfCode'
 import './App.css'
 
-getUfCode()
-
 class App extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      uf: 'SC'
+      uf: ''
     }
   }
+
+  componentDidMount () {
+    getUfCode().then(code => this.setUfCode(code))
+  } 
 
   setUfCode = code => this.setState(state => state.uf = code)
 
